@@ -12,29 +12,14 @@ namespace _02.HelloCSharpWin
 {
     public partial class Calculator : Form
     {
+        public int Result = 0;
+        public bool isNewNum = true;
+
         public Calculator()
         {
             InitializeComponent();
         }
 
-        private void HelloLabel_Click(object sender, EventArgs e)
-        {
-            int number1 = 1;
-            int number2 = 2;
-
-            int sum = number1 + number2;
-
-            HelloLabel.Text = sum.ToString();
-        }
-
-        private void SumNumbers_Click(object sender, EventArgs e)
-        {
-            int number1 = Convert.ToInt32(Sum1.Text);
-            int number2 = Convert.ToInt32(Sum2.Text);
-
-            int sum = Add(number1, number2);
-            SumResult.Text = sum.ToString();
-        }
         public int Add(int number1, int number2)
         {
             int sum = number1 + number2;
@@ -49,6 +34,42 @@ namespace _02.HelloCSharpWin
         {
             int sub = number1 - number2;
             return sub;
+        }
+
+        private void NumButton1_Click(object sender, EventArgs e)
+        {
+            if (isNewNum)
+            {
+                NumScreen.Text = "1";
+                isNewNum = false
+            }
+            else
+            {
+                NumScreen.Text = NumScreen.Text + "1";
+            }
+            SetNum("1");
+        }
+
+        private void NumButton2_Click(object sender, EventArgs e)
+        {
+            SetNum("2");
+        }
+
+        public void SetNum(string num)
+        {
+            if (NumScreen.Text == "0")
+                NumScreen.Text = num;
+            else
+                NumScreen.Text = NumScreen.Text + num;
+        }
+
+        private void NumPlus_Click(object sender, EventArgs e)
+        {
+            int num = int.Parse(NumScreen.Text);
+            Result = Result + num;
+
+            NumScreen.Text = Result.ToString();
+            isNewNum = true;
         }
     }
 }
