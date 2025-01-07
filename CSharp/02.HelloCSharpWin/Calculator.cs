@@ -41,7 +41,11 @@ namespace _02.HelloCSharpWin
             if (isNewNum)
             {
                 NumScreen.Text = "1";
-                isNewNum = false
+                isNewNum = false;
+            }
+            else if (NumScreen.Text == "0")
+            {
+                NumScreen.Text = "1";
             }
             else
             {
