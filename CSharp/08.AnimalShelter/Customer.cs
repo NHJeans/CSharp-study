@@ -15,6 +15,46 @@ namespace _08.AnimalShelter
         public string Address;
         public string Description;
 
+        private List<Cat> _MyCats = new List<Cat>();
+        public List<Cat> MyCats
+        {
+            get { return _MyCats; }
+        }
+
+        public bool Adopt(Cat cat)
+        {
+            if (_IsQualified)
+            {
+                _MyCats.Add(cat);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private List<Dog> _MyDogs =new List<Dog>();
+        public List<Dog> MyDogs
+        {
+            get { return _MyDogs; }
+        }
+
+        // 함수의 오버로딩 (매개 변수를 다르게 하여 같은 이름의 함수를 여러개 만들 수 있음) 
+        public bool Adopt(Dog dog)
+        {
+            if (_IsQualified)
+            {
+                _MyDogs.Add(dog);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
         public Customer(string firstName, string lastName, DateTime birthday)
         {
             this.FirstName = firstName;
@@ -26,21 +66,22 @@ namespace _08.AnimalShelter
 
         public DateTime Birthday
         {
-            get {return _Birthday;}
+            get { return _Birthday; }
             set
             {
                 _Birthday = value;
                 _IsQualified = Age >= 18;
             }
         }
-        
+
         public int Age
         {
-            get {return DateTime.Now.Year - _Birthday.Year ; ;}
+            get { return DateTime.Now.Year - _Birthday.Year; ; }
         }
         public bool IsQualified
         {
-            get {
+            get
+            {
                 return _IsQualified;
             }
         }
@@ -51,5 +92,5 @@ namespace _08.AnimalShelter
                 return FirstName + " " + LastName;
             }
         }
-        }
+    }
 }
